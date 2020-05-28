@@ -1,7 +1,10 @@
 import { Router, Request, Response } from "express";
 import { filterImageFromURL, deleteLocalFiles } from '../../util/util';
+import { AuthRouter, requireAuth } from './auth.router';
 
 const router: Router = Router();
+
+router.use('/auth', AuthRouter);
 
 // @TODO1 IMPLEMENT A RESTFUL ENDPOINT
 // GET /filteredimage?image_url={{URL}}
@@ -17,7 +20,7 @@ const router: Router = Router();
 //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
 
 /**************************************************************************** */
-router.get('/filteredimage', async (req: Request, res: Response) => {
+router.get('/filteredimage', requireAuth, async (req: Request, res: Response) => {
   const { image_url: imageUrl } = req.query;
 
   if (!imageUrl) {
