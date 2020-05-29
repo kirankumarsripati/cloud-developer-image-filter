@@ -7,11 +7,11 @@ Udagram is a simple cloud application developed alongside the Udacity Cloud Engi
 2. `npm run dev` to build and start
 
 ## Usage
-1. Create a environment variable `JWT_SECRET`
+1. Create an environment variable `JWT_SECRET`
 
 For example, if you are on Mac/Linux, add to bash profile (`~/.zshrc` or `./bash_profile`)
 
-`export JWT_SECRET=myJWTSecretForUdacity`
+`export JWT_SECRET=YOUR_JWT_SECRET`
 
 2. Generate a JWT Token
 
