@@ -2,16 +2,28 @@
 
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
+## Installation
+1. `npm i` to install all dependencies
+2. `npm run dev` to build and start
+
 ## Usage
+1. Create a environment variable `JWT_SECRET`
+`
+For example, if you are on Mac/Linux, add to bash profile (`~/.zshrc` or `./bash_profile`)
 
-### Installation
+`export JWT_SECRET=myJWTSecretForUdacity`
 
-You'll need to create a new node server. Open a new terminal within the project directory and run:
+2. Generate a JWT Token
 
-1. Initialize a new project: `npm i`
-2. run the development server with `npm run dev`
+`POST /api/v0/auth`
 
-### Custom Domain Name
-AWS - [http://cloud-developer-image-filter-dev.ap-south-1.elasticbeanstalk.com/](http://cloud-developer-image-filter-dev.ap-south-1.elasticbeanstalk.com/)
+    curl -i -H 'Content-Type: application/json' -X POST -d '{ "email": "demo@example.com", "password": "anypassword"}' http://localhost:8082/api/v0/auth
 
-[http://image-filter.vasudevmilk.in/](http://image-filter.vasudevmilk.in/)
+3. Use generated JWT Token in authorization header of image filter API
+
+`GET /api/v0/filteredimage?image_url={{image_url}}`
+
+You can use Postman Collection - `cloud-cdnd-c2-final.postman_collection.json` to test the functionality. Make sure to update JWT Token for the collection and HOST variable to test with your URL.
+
+## AWS Beanstalk URL
+[http://cloud-developer-image-filter-dev.ap-south-1.elasticbeanstalk.com/](http://cloud-developer-image-filter-dev.ap-south-1.elasticbeanstalk.com/)
